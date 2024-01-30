@@ -4,7 +4,7 @@ import requests
 app = Flask(__name__)
 
 @app.route('/')
-def home    ():
+def home():
     #return 'Hello x, World!'
     uri='http://book-api.h8bpb6h5gtg2ecga.uksouth.azurecontainer.io/'
     response = requests.get(uri)
@@ -18,6 +18,14 @@ def home    ():
     else:
         # Return an error message if the request was not successful
         return f'Error: {response.status_code} - Unable to fetch data from API'
+
+
+
+@app.route('/test')
+def test():
+
+    name = os.getenv('NAME')
+    return f"Hello {name}"
 
 if __name__ == '__main__':
     app.run(debug=True)
